@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test for colour</title>
+</head>
+
+<body>
+<div onclick="hell(this.id)"  id="abc" class="test">Hefkskfh</div>
+<script>
+var element = document.getElementById('abc');
+var style;
+if (window.getComputedStyle) {
+    style = window.getComputedStyle(element);
+} else {
+    style = element.currentStyle;
+    alert(style.backgroundColor);
+}
+if (!style) {
+    // ...seriously old browser...
+} else {
+    alert(style.backgroundColor);
+}
+</script>
+</body>
+</html>

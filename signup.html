@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sign up page</title>
+<style>
+.log{
+border:solid gray 2px;
+border-radius: 5px;
+margin: 200px;
+margin-left:400px;
+margin-top: 100px;
+width: 400px;
+padding: 20px;
+background-color: lightblue;
+}
+#btn{
+background-color: lightgray;
+}
+</style>
+</head>
+
+<body>
+<div class="log">
+<form action="signup.php" method="POST">
+Name			:<input type="text" id="nameof" name="nameof" required><br><br>
+Gender		:<input type="radio" name="gender" value="M"required>Male<input type="radio" name="gender" value="F" required>Female<br><br>	
+Mobile no	:<input type="tel" id="mobile" name="mobileno" pattern="[0-9]{10}" required><br><br>
+Gmail			:<input type="email" id="mail" name="mail" required><br><br>
+Username		:<input type="text" id="user" name="username" required><br><br>
+Password		:<input type="password" id="pass" name="password" required><br><br>
+
+<input type="submit" id="btn">
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<!--https://www.swiggy.com/restaurants/stop-n-go-p-and-t-officers-colony-somajiguda-and-khairtabad-hyderabad-66666-->
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<title>Snacks</title>
+<style>
+.mainimg{
+margin: 30px;
+margin-left: 80px;
+}
+.snackimg{
+width: 200px;
+height: 200px;
+margin-left: 30px;
+}
+.descr{
+width: 200px;
+margin-left: 30px;
+}
+.add{
+border: solid 1px gray;
+color: green;
+float: right;
+}
+.add1{
+border: solid 1px gray;
+color: green;
+float: right;
+padding-left: 5px;
+padding-right: 5px;
+}
+table,th,td {
+  padding: 5px;
+  border-spacing: 5px;
+}
+</style>
+</head>
+<body>
+<div class="container-fluid" style="background-color:black;height: 250px;">
+<div class="row">
+<div class="col-sm-4">
+<img src="snacksmain.png" alt="" height="200px" width="250px;" class="mainimg">
+</div>
+<div class="col-sm-8">
+<h2 style="text-align:center ;color:white ;margin-top:30px ;text-shadow: 2px 2px white;font-size:50px">Snacks</h2>
+<a href="snackscart.php">
+<img src="cart.png" height="35px" width="35px" style="position: absolute;top: 5px;right: 43px">
+<span style="position: absolute;top: 5px;right:5px ;color: white;">CART</span>
+</a>
+</div>
+</div>
+</div>
+<!--List of snacks-->
+<div class="container" style="margin-top: 30px;">
+<div class="row">
+<div class="col-sm-3" style="border-right: solid 1px orange">
+<a href="" >Recommended</a><br>
+<a href="" >Puffs and snacks</a><br>
+<a href="" >Hotdogs</a><br>
+<a href="" >Beverages</a><br>
+
+</div>
+<div class="col-sm-9">
+<h4>Recommended</h4>
+<p>14 ITEMS</p><br>
+<!--Items in Recommended-->
+<div class="row">
+<div class="col">		
+<img src="paneerhotdog.png" alt="" class="snackimg">
+<div class="descr">
+<h4>Paneer Hotdog</h4>
+<p>Hot Dog</p>
+<button class="add" onclick="cart('Paneer Hotdog',70,this.id)" id="A01">ADD</button>
+<span id="A010" style="display: none;">
+<button class="add" onclick="cart2('Paneer Hotdog',70,this.id)" id="B1" style="margin-left: 3px">+</button><span id="B11" class="add1">1</span><button class="add" onclick="cart3('Paneer Hotdog',70,this.id)" id="B" style="margin-right: 3px">-</button>
+</span>
+<h6>Rs.70</h6>
+</div>
+<br><br>
+<img src="chickensnacks.png" alt="" class="snackimg">
+<div class="descr">
+<h4>Chickensnacks</h4>
+<p>Puff & Snaacks</p>
+<button class="add">ADD</button>
+<h6>Rs.50</h6>
+</div>
+
+</div>
+
+
+
+<div class="col">
+<img src="chickentrolly.png" alt="" class="snackimg">
+<div class="descr">
+<h4>Chicken Trolley</h4>
+<p>Puffs & Snacks</p>
+<button class="add">ADD</button>
+<h6>Rs.70</h6>
+<br><br>
+<img src="vegspringroll.png" alt="" class="snackimg">
+<div class="descr">
+<h4>Vegspringroll</h4>
+<p>Spring roll</p>
+<button class="add">ADD</button>
+<h6>Rs.60</h6>
+</div>
+
+</div>
+</div>
+</div>
+<!--End of items in Recommended-->
+
+<!--CART for snacks-->
+<br><br><br>
+<div id="cart" style="border: 2px solid; margin-top:5px;margin-left: 200px;margin-right: 200px;padding:5px;padding-left: 120px;display: none;">
+<h4 >CART:</h4>
+<table id="bill" >
+<tr><th>Snack</th><th>No</th><th>Cost</th></tr>
+
+</table>
+<table> <th>Total<th>  <th id="sum">0</th>  </table>
+<button onclick="loadcart()">Order now</button>
+</div>
+<form action="snackscart.php" method="post" id="fixorder" style="display: none;">
+<input type="text" name="fixlist" id="fixlist">
+</form>
+
+
+</div>
+
+</div>
+</div>
+
+<script>
+var sum=0;
+function cart(a,b,c) {				//to add items to cart
+	var table=document.getElementById("bill");
+	var row = table.insertRow();
+	var cell1 = row.insertCell(0);
+	var cell2 = row.insertCell(1);
+	var cell3 = row.insertCell(2);
+	cell1.innerHTML = a;
+	cell2.innerHTML = 1;
+	cell3.innerHTML = b;
+
+	//m+="<br>"+a+Array(10).fill('\xa0').join('')+1+Array(10).fill('\xa0').join('')+"Rs."+b+"\n";
+	document.getElementById("sum").innerHTML=sum;
+	sum+=b;
+	document.getElementById("sum").innerHTML=sum;
+	var ad=document.getElementById(c);
+	ad.style.display="none";
+	c+='0';
+	var ad=document.getElementById(c);
+	ad.style.display="block";
+	document.getElementById("cart").style.display="block";
+}
+function cart2(a,b,c) {			// to increase count of added items
+	var k=0;
+	var xy = document.getElementById("bill").rows.length;
+	var m =document.getElementById("bill");
+	for(var i=1;i<xy;i++)
+	{
+		var x = document.getElementById("bill").rows[i].cells;
+  		if(x[0].innerHTML == a)
+  		{
+  			k=parseInt(x[1].innerHTML)+1;
+  			document.getElementById(c+1).innerHTML=k;
+  			x[1].innerHTML=k;
+  			x[2].innerHTML=k*b;
+  			sum=b;
+  		}	
+	}
+	document.getElementById("sum").innerHTML=parseInt(document.getElementById("sum").innerHTML)+sum;
+}
+function cart3(a,b,c) {				//to decrease count of added
+	var k=0;
+	var xy = document.getElementById("bill").rows.length;
+	var m =document.getElementById("bill");
+	for(var i=1;i<xy;i++)
+	{
+		var x = document.getElementById("bill").rows[i].cells;
+  		if(x[0].innerHTML == a)
+  		{
+  			k=parseInt(x[1].innerHTML)-1;
+  			document.getElementById(c+1+1).innerHTML=k;
+  			x[1].innerHTML=k;
+  			x[2].innerHTML=k*b;
+  			sum=b;
+  		}	
+	}
+	document.getElementById("sum").innerHTML=parseInt(document.getElementById("sum").innerHTML)-sum;
+}
+function loadcart() {
+	var f="";
+	var xy = document.getElementById("bill").rows.length;
+	var m =document.getElementById("bill");
+	for(var i=0;i<xy;i++)
+	{
+		var x = document.getElementById("bill").rows[i].cells;
+  		//f+="\n"+x[0].innerHTML+Array(10).fill('\xa0').join('')+x[1].innerHTML+Array(10).fill('\xa0').join('')+x[2].innerHTML+"\n";
+  		f+="\n"+x[0].innerHTML+"\t\t"+x[1].innerHTML+"\t\t"+x[2].innerHTML+"\n";
+	}
+
+	document.getElementById("fixlist").value=f;
+	document.getElementById("fixorder").submit();
+}
+</script>
+</body>
+</html>
